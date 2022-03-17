@@ -12,55 +12,24 @@ import engine.mobile.Guardian;
 
 
 public class PaintStrategy {
-	public void paint(Map map, Graphics graphics) {
+	
+	public void paint(Map map, Graphics graphics, int lvl) {
 		int blockSize = GameConfiguration.BLOCK_SIZE;
 		Block[][] blocks = map.getBlocks();
 		
-		int[][] level1 = {{ 0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0},
-    					   { 1,1,1,1,1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,0,1,0,0,0,0,0,1,0},
-    					   { 0,0,0,1,0,0,0,1,1,1,1,0,0,1,0,0,1,0,0,1,1,1,1,1,1,1,1,0},
-    					   { 0,0,0,1,0,1,1,1,0,0,1,0,0,1,0,0,1,0,1,1,1,0,0,0,0,1,0,0},
-    					   { 0,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,1,1,1,0,1,1,1,0,1,1,1,0},
-    					   { 0,1,1,1,0,1,1,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0,1,0,1,0,0,0},
-    					   { 0,1,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1,0,1,0,1,1,1,0},
-    					   { 0,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,1,0},
-    					   { 0,0,0,1,0,1,1,1,1,1,1,0,0,0,1,0,0,0,0,1,0,1,1,0,0,0,1,0},
-    					   { 1,1,1,1,0,1,0,0,0,0,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,0},
-    					   { 0,1,0,0,0,1,0,0,0,0,1,1,1,1,1,0,0,1,0,0,1,0,0,1,1,1,1,0},
-    					   { 0,1,0,0,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,0,1,0,1,0},
-    					   { 0,1,0,1,1,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,0,1,0},
-    					   { 0,1,0,0,0,1,0,1,0,0,0,1,1,1,0,0,0,0,0,0,1,0,1,0,0,0,1,0},
-    					   { 0,1,1,1,0,1,0,1,0,0,0,0,0,1,0,0,1,1,1,0,1,0,1,0,0,0,1,0},
-    					   { 0,1,0,0,0,1,1,1,1,0,1,0,1,1,0,0,1,0,1,0,1,0,1,1,1,0,0,0},
-    					   { 0,1,0,0,0,1,0,0,0,0,1,0,1,0,0,1,1,0,1,0,1,0,1,0,1,0,0,0},
-    					   { 0,1,1,1,1,1,0,0,0,0,1,1,1,0,0,1,0,0,1,1,1,0,1,0,1,1,1,1},
-    					   { 1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0}};
+		int level[][];
+		if(lvl == 1) {
+			level = GameConfiguration.level1;
+		}else {
+			level = GameConfiguration.level2;
+		}
 		
-		int[][] level2 = {{ 0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-						  { 1,1,1,0,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0},
-						  { 0,0,1,1,1,1,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,1,0,0,0},
-						  { 0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0},
-						  { 0,0,0,0,0,1,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0},
-						  { 0,0,0,0,0,1,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,0},
-						  { 0,0,0,1,1,1,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,1,1,1,1,1,0},
-						  { 0,0,0,1,0,0,0,1,1,1,1,0,1,1,1,1,1,0,1,0,0,0,1,0,0,0,0,0},
-						  { 0,1,1,1,0,0,1,1,0,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0},
-						  { 0,0,0,1,1,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1,0,0,0},
-						  { 0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,0,1,0,0,1,1,1,1,1,1,0},
-						  { 0,1,1,1,0,0,0,1,0,0,0,1,0,0,1,1,1,0,1,1,1,1,0,0,0,0,1,0},
-						  { 0,1,0,0,0,0,0,1,0,0,0,1,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0},
-						  { 0,1,0,0,1,0,0,1,1,1,1,1,0,0,1,0,1,0,1,0,0,0,0,0,1,1,1,0},
-						  { 0,1,0,0,1,0,0,0,0,0,0,0,0,1,1,0,1,1,1,0,0,1,0,1,1,0,1,0},
-						  { 0,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0,1,0,0,1,0},
-						  { 0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0},
-						  { 0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1},
-						  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0}};
 
 		for (int lineIndex = 0; lineIndex < map.getLineCount(); lineIndex++) {
 			for (int columnIndex = 0; columnIndex < map.getColumnCount(); columnIndex++) {
 				Block block = blocks[lineIndex][columnIndex];
 				int randomNum = ThreadLocalRandom.current().nextInt(1, 4);
-				if (level1[lineIndex][columnIndex] == 1) {
+				if (level[lineIndex][columnIndex] == 1) {
 					graphics.setColor(Color.GRAY);
 					graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, blockSize, blockSize);
 				}else {
@@ -107,20 +76,20 @@ public class PaintStrategy {
 		int x = position.getColumn();
 
 		graphics.setColor(Color.blue);
-		graphics.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
+		graphics.fillRect(x * blockSize+2, y * blockSize+2, blockSize-4, blockSize-4);
 		graphics.setColor(Color.black);
-		graphics.drawRect(x * blockSize, y * blockSize, blockSize, blockSize);
+		graphics.drawRect(x * blockSize+2, y * blockSize+2, blockSize-4, blockSize-4);
 
 		//face
 		graphics.setColor(Color.white);
-		graphics.fillOval(x * blockSize+7,y * blockSize+8,13,13);
-		graphics.fillOval(x * blockSize+21,y * blockSize+8,13,13);
+		graphics.fillOval(x * blockSize+7,y * blockSize+8,11,11);
+		graphics.fillOval(x * blockSize+21,y * blockSize+8,11,11);
 		graphics.setColor(Color.black);
-		graphics.fillOval(x * blockSize+11,y * blockSize+12,5,5);
-		graphics.fillOval(x * blockSize+25,y * blockSize+12,5,5);
+		graphics.fillOval(x * blockSize+11,y * blockSize+12,3,3);
+		graphics.fillOval(x * blockSize+25,y * blockSize+12,3,3);
 
 		//bouche
 		graphics.setColor(Color.black);
-		graphics.fillOval(x * blockSize+7,y * blockSize+24,27,7);
+		graphics.fillOval(x * blockSize+7,y * blockSize+24,25,4);
 	}
 }

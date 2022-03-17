@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import engine.map.Block;
 import engine.map.Map;
 import engine.mobile.Player;
 import engine.mobile.Guardian;
@@ -22,11 +23,20 @@ public class GameDisplay extends JPanel {
 		this.manager = manager;
 	}
 
+	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
-		paintStrategy.paint(map, g);
+		
+		int level  = manager.getLevel();
+		if(level ==2) {
+			Player plyer = manager.getPlayer();
+			Block position = plyer.getPosition();
+			Block newPosition = map.getBlock(1,0);
+			plyer.setPosition(newPosition);
+		}
+		paintStrategy.paint(map, g, level);
 
 		Player player = manager.getPlayer();
 		Guardian guard = manager.getGuard();
@@ -38,5 +48,6 @@ public class GameDisplay extends JPanel {
 			paintStrategy.paint(guardian, g);
 		}
 	}
+	
 
 }

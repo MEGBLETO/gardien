@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import config.GameConfiguration;
+import engine.map.Block;
 import engine.map.Map;
 import engine.process.GameBuilder;
 import engine.process.MobileElementManager;
@@ -23,7 +24,7 @@ public class MainGUI extends JFrame implements Runnable {
 	private final static Dimension preferredSize = new Dimension(GameConfiguration.WINDOW_WIDTH, GameConfiguration.WINDOW_HEIGHT);
 
 	private MobileElementManager manager;
-
+	
 	private GameDisplay dashboard;
 
 	public MainGUI(String title) {
@@ -64,7 +65,9 @@ public class MainGUI extends JFrame implements Runnable {
 			} catch (InterruptedException e) {
 				System.out.println(e.getMessage());
 			}
-
+			
+			
+			
 			manager.nextRound();
 			dashboard.repaint();
 		}
