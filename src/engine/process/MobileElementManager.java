@@ -248,14 +248,6 @@ public class MobileElementManager {
 		        	}
 		        }
 	        }
-	        else if(pos == 'O') {
-	        	if(position.getColumn()+1 < GameConfiguration.COLUMN_COUNT) {
-		        	if (lvlMap[position.getLine()][position.getColumn()+1] == 1) {
-		        	 	newPosition = map.getBlock(position.getLine(), position.getColumn()+1);
-		        	 	guardian.setPosition(newPosition);
-		        	}
-		        }
-	        }
 		}
 	}
 
