@@ -22,11 +22,11 @@ public class GameMenu extends JFrame implements ActionListener {
         commencer = new JButton("Start");
         commencer.addActionListener(this);
         commencer.setFocusable(false);
-        commencer.setBounds(400, 300, 100, 40);
+        commencer.setBounds(350, 300, 100, 40);
 
 
         parametre = new JButton("Settings");
-        parametre.setBounds(400, 350, 100, 40);
+        parametre.setBounds(350, 350, 100, 40);
         parametre.setFocusable(false);
         parametre.addActionListener(this);
 
