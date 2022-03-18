@@ -220,7 +220,7 @@ public class MobileElementManager {
 	        char pos = orientation.charAt(r.nextInt(orientation.length()));
 	        if(pos == 'S') {
 	        	if (position.getLine()+1 < GameConfiguration.LINE_COUNT) {
-	        		if(lvlMap[position.getLine()+1][position.getColumn()] == 1) {
+	        		if(lvlMap[position.getLine()+1][position.getColumn()] == 0) {
 		        	 	newPosition = map.getBlock(position.getLine()+1, position.getColumn());
 		        	 	guardian.setPosition(newPosition);
 	        		}
