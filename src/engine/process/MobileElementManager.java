@@ -233,24 +233,24 @@ public class MobileElementManager {
 		        	 	guardian.setPosition(newPosition);
 		        	}
 	    	   }
-	        }else if(pos == 'S') {
-	        	if (position.getLine()+1 < GameConfiguration.LINE_COUNT) {
-	        		if(lvlMap[position.getLine()+1][position.getColumn()] == 1) {
-		        	 	newPosition = map.getBlock(position.getLine()+1, position.getColumn());
+	        }else if(pos == 'O') {
+	        	if (position.getColumn()-1 >= 0) {
+	        		if(lvlMap[position.getLine()][position.getColumn()-1] == 1) {
+		        	 	newPosition = map.getBlock(position.getLine(), position.getColumn()-1);
 		        	 	guardian.setPosition(newPosition);
 	        		}
 	        	}
 	        }else if(pos == 'E'){
-	        	if(position.getColumn()-1 >= 0){
-		        	if (lvlMap[position.getLine()][position.getColumn()-1] == 1) {
-		        	 	newPosition = map.getBlock(position.getLine(), position.getColumn()-1);
+	        	if(position.getColumn()+1 < GameConfiguration.LINE_COUNT){
+		        	if (lvlMap[position.getLine()][position.getColumn()+1] == 1) {
+		        	 	newPosition = map.getBlock(position.getLine(), position.getColumn()+1);
 		        	 	guardian.setPosition(newPosition);
 		        	}
 		        }
 	        }
 	        else if(pos == 'O') {
 	        	if(position.getColumn()+1 < GameConfiguration.COLUMN_COUNT) {
-		        	if (lvlMap[position.getLine()+1][position.getColumn()] == 1) {
+		        	if (lvlMap[position.getLine()][position.getColumn()+1] == 1) {
 		        	 	newPosition = map.getBlock(position.getLine(), position.getColumn()+1);
 		        	 	guardian.setPosition(newPosition);
 		        	}
