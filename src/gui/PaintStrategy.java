@@ -30,7 +30,7 @@ public class PaintStrategy {
 				Block block = blocks[lineIndex][columnIndex];
 				int randomNum = ThreadLocalRandom.current().nextInt(1, 4);
 				if (level[lineIndex][columnIndex] == 1) {
-					graphics.setColor(Color.WHITE);
+					graphics.setColor(Color.green);
 					graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, blockSize, blockSize);
 				}else {
 					graphics.setColor(Color.BLACK);
