@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 
 import config.GameConfiguration;
 import engine.Time;
-import engine.map.Block;
 import engine.map.Map;
 import engine.process.GameBuilder;
 import engine.process.MobileElementManager;
@@ -28,7 +27,7 @@ public class MainGUI extends JFrame implements Runnable {
 	
 	private GameDisplay dashboard;
 
-	public MainGUI(String title) {
+	public MainGUI(String title, String s) {
 		super(title);
 		init();
 	}

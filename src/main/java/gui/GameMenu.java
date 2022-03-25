@@ -34,6 +34,7 @@ public class GameMenu extends JFrame implements ActionListener {
 
 
         java.net.URL imageURL = GameMenu.class.getResource("bg.jpg");
+        menuIcon = new ImageIcon(new ImageIcon(imageURL).getImage().getScaledInstance(800,800,Image.SCALE_DEFAULT));
         myLabel=new JLabel("hello");
         myLabel.setIcon(menuIcon);
         myLabel.setSize(800, 800);
@@ -61,10 +62,16 @@ public class GameMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == commencer){
             dispose();
-                MainGUI gameMainGUI = new MainGUI("guardian");
+            MainGUI gameMainGUI = new MainGUI("guardian","");
 
-                Thread gameThread = new Thread(gameMainGUI);
-                gameThread.start();
+            Thread gameThread = new Thread(gameMainGUI);
+            gameThread.start();
+
+        }
+        if(e.getSource() == parametre){
+            dispose();
+            GameSettings gameSettings = new GameSettings();
+
 
         }
     }
