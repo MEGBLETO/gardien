@@ -62,10 +62,10 @@ public class GameMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == commencer){
             dispose();
-                MainGUI gameMainGUI = new MainGUI("guardian","");
+            MainGUI gameMainGUI = new MainGUI("guardian","");
 
-                Thread gameThread = new Thread(gameMainGUI);
-                gameThread.start();
+            Thread gameThread = new Thread(gameMainGUI);
+            gameThread.start();
 
         }
         if(e.getSource() == parametre){
