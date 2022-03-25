@@ -65,34 +65,22 @@ public class MobileElementManager {
 		return (int) (Math.random() * (max + 1 - min)) + min;
 	}
 
-	public void definedPath(int k) {
-		ArrayList<Character> moveGardien = guardians.get(k).getListe();
-		
-		guardians.get(k).setListeMove(moveGardien);
-		
-		int j=0;
-		while(true){
-			/*while (i.hasNext()) {
-		       char guardian_path = this.mouvement.get(i);
-			}*/
-			if(j == moveGardien.size()) {
-				j=0;
-			}
-			char guardian_path = moveGardien.get(j);
-			/*nextMoveGardien(guardian_path);*/
-			j=+1;
-			
-		}
-	}
 	
-	public void pathGardien() {
-		for(int pg = 0; pg < guardians.size(); pg++) {
-			definedPath(pg);
+	public void getPath() {
+		int numGuardian=1;
+		
+		for (Guardian guardian : guardians) {
+			ArrayList<Character> mouvement = new ArrayList<Character>();
+			mouvement = guardian.getListe();
+			guardian.setListeMove(mouvement, numGuardian);
+		
+			numGuardian++;
 		}
 	}
 
 	public void moveLeftPlayer() {
 		Block position = player.getPosition();
+		
 		
 		int lvl = getLevel();
 		int[][] lvlMap;
@@ -183,7 +171,6 @@ public class MobileElementManager {
 			if (guardian.getPosition() == position) {
 				Gameover();
 			}
-
 		}
 	}
 
@@ -200,6 +187,8 @@ public class MobileElementManager {
 
 
 	private void moveGuardians() {
+		getPath();
+		
 		for (Guardian guardian : guardians) {
 			Block position = guardian.getPosition();
 			
@@ -216,11 +205,13 @@ public class MobileElementManager {
 				lvlMap= GameConfiguration.level2;
 			}
 						
-			String orientation = "NESO";
-	        char pos = orientation.charAt(r.nextInt(orientation.length()));
+			ArrayList<Character> mouvement = new ArrayList<Character>();
+			mouvement = guardian.getListe();
+			char pos = guardian.nextMove(mouvement);
+						
 	        if(pos == 'S') {
 	        	if (position.getLine()+1 < GameConfiguration.LINE_COUNT) {
-	        		if(lvlMap[position.getLine()+1][position.getColumn()] == 0) {
+	        		if(lvlMap[position.getLine()+1][position.getColumn()] == 1) {
 		        	 	newPosition = map.getBlock(position.getLine()+1, position.getColumn());
 		        	 	guardian.setPosition(newPosition);
 	        		}
@@ -241,7 +232,7 @@ public class MobileElementManager {
 	        		}
 	        	}
 	        }else if(pos == 'E'){
-	        	if(position.getColumn()+1 < GameConfiguration.LINE_COUNT){
+	        	if(position.getColumn()+1 < GameConfiguration.COLUMN_COUNT){
 		        	if (lvlMap[position.getLine()][position.getColumn()+1] == 1) {
 		        	 	newPosition = map.getBlock(position.getLine(), position.getColumn()+1);
 		        	 	guardian.setPosition(newPosition);
