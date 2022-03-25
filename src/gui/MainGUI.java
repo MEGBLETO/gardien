@@ -27,17 +27,35 @@ public class MainGUI extends JFrame implements Runnable {
 	
 	private GameDisplay dashboard;
 
-	public MainGUI(String title) {
+	public Boolean cont;
+
+	public MainGUI(String title, String controls) {
 		super(title);
-		init();
+		init(controls);
+
+		if (controls == "direction"){
+			cont = true;
+		}
+		else if(controls == "alpha"){
+			cont = false;
+		}
+
+		else{
+			cont = true;
+		}
+
 	}
 
-	private void init() {
+
+
+	private void init(String controls) {
 
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
 		KeyControls keyControls = new KeyControls();
+		controls(controls);
+
 		JTextField textField = new JTextField();
 		textField.addKeyListener(keyControls);
 		contentPane.add(textField, BorderLayout.SOUTH);
@@ -55,6 +73,11 @@ public class MainGUI extends JFrame implements Runnable {
 		setPreferredSize(preferredSize);
 		setResizable(false);
 		setLocationRelativeTo(null);
+
+	}
+
+	public String controls(String controls) {
+		return controls;
 	}
 
 	@Override
@@ -65,36 +88,90 @@ public class MainGUI extends JFrame implements Runnable {
 			} catch (InterruptedException e) {
 				System.out.println(e.getMessage());
 			}
-			
-			
-			
+
 			manager.nextRound();
 			dashboard.repaint();
 		}
 	}
 
-	private class KeyControls implements KeyListener {
+	private class KeyControls implements KeyListener  {
+
+
+
 
 		@Override
 		public void keyPressed(KeyEvent event) {
-			char keyChar = event.getKeyChar();
-			switch (keyChar) {
 
-			case 'q':
-				manager.moveLeftPlayer();
-				break;
-			case 'd':
-				manager.moveRightPlayer();
-				break;
-			case 'z':
-				manager.moveUpPlayer();
-				break;
-			case 's':
-				manager.moveDownPlayer();
-				break;	
-			default:
-				break;
+
+
+			if(cont == true) {
+				char keyChar = event.getKeyChar();
+
+				switch (keyChar) {
+
+					case 'q':
+						manager.moveLeftPlayer();
+						break;
+					case 'd':
+						manager.moveRightPlayer();
+						break;
+					case 'z':
+						manager.moveUpPlayer();
+						break;
+					case 's':
+						manager.moveDownPlayer();
+						break;
+					default:
+						break;
+				}
 			}
+
+
+				else if ( cont == false){
+				int keyCode = event.getKeyCode();
+
+					switch (keyCode) {
+
+						case  37:
+							manager.moveLeftPlayer();
+							break;
+						case 39:
+							manager.moveRightPlayer();
+							break;
+						case 38:
+							manager.moveUpPlayer();
+							break;
+						case 40:
+							manager.moveDownPlayer();
+							break;
+						default:
+							break;
+					}
+
+			}
+
+				else if(cont == null){
+				char keyChar = event.getKeyChar();
+
+				switch (keyChar) {
+
+					case 'q':
+						manager.moveLeftPlayer();
+						break;
+					case 'd':
+						manager.moveRightPlayer();
+						break;
+					case 'z':
+						manager.moveUpPlayer();
+						break;
+					case 's':
+						manager.moveDownPlayer();
+						break;
+					default:
+						break;
+				}
+			}
+
 		}
 
 		@Override

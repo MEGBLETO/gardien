@@ -30,16 +30,25 @@ public class PaintStrategy {
 				Block block = blocks[lineIndex][columnIndex];
 				int randomNum = ThreadLocalRandom.current().nextInt(1, 4);
 				if (level[lineIndex][columnIndex] == 1) {
-					graphics.setColor(Color.GRAY);
+					graphics.setColor(Color.WHITE);
 					graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, blockSize, blockSize);
 				}else {
 					graphics.setColor(Color.BLACK);
 					graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, blockSize, blockSize);
 				}
-				graphics.setColor(Color.BLACK);
-				graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, blockSize, 1);
-				graphics.setColor(Color.BLACK);
-				graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, 1, blockSize);
+				
+				if (level[lineIndex][columnIndex] == 1) {
+					graphics.setColor(Color.BLACK);
+					graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, blockSize, 1);
+					graphics.setColor(Color.BLACK);
+					graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, 1, blockSize);
+				}else {
+					graphics.setColor(Color.WHITE);
+					graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, blockSize, 1);
+					graphics.setColor(Color.WHITE);
+					graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, 1, blockSize);
+				}
+				
 			}
 		}
 	}
