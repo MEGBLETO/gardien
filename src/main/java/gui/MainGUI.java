@@ -20,11 +20,11 @@ public class MainGUI extends JFrame implements Runnable {
 	private static final long serialVersionUID = 1L;
 
 	private Map map;
-	
+
 	private final static Dimension preferredSize = new Dimension(GameConfiguration.WINDOW_WIDTH, GameConfiguration.WINDOW_HEIGHT);
 
 	private MobileElementManager manager;
-	
+
 	private GameDisplay dashboard;
 
 	public Boolean cont;
@@ -66,7 +66,7 @@ public class MainGUI extends JFrame implements Runnable {
 
 		dashboard.setPreferredSize(preferredSize);
 		contentPane.add(dashboard, BorderLayout.CENTER);
-		
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
@@ -127,30 +127,30 @@ public class MainGUI extends JFrame implements Runnable {
 			}
 
 
-				else if ( cont == false){
+			else if ( cont == false){
 				int keyCode = event.getKeyCode();
 
-					switch (keyCode) {
+				switch (keyCode) {
 
-						case  37:
-							manager.moveLeftPlayer();
-							break;
-						case 39:
-							manager.moveRightPlayer();
-							break;
-						case 38:
-							manager.moveUpPlayer();
-							break;
-						case 40:
-							manager.moveDownPlayer();
-							break;
-						default:
-							break;
-					}
+					case  37:
+						manager.moveLeftPlayer();
+						break;
+					case 39:
+						manager.moveRightPlayer();
+						break;
+					case 38:
+						manager.moveUpPlayer();
+						break;
+					case 40:
+						manager.moveDownPlayer();
+						break;
+					default:
+						break;
+				}
 
 			}
 
-				else if(cont == null){
+			else if(cont == null){
 				char keyChar = event.getKeyChar();
 
 				switch (keyChar) {

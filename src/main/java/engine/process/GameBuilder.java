@@ -6,6 +6,9 @@ import engine.map.Map;
 import engine.mobile.Guardian;
 import engine.mobile.Player;
 
+import engine.Time;
+
+
 public class GameBuilder {
 
 	public static Map buildMap() {
@@ -46,6 +49,12 @@ public class GameBuilder {
 		manager.addGuardian(guardian5);
 		manager.addGuardian(guardian7);
 		manager.addGuardian(guardian8);*/
+
+		//****Chrono & tps exec****//
+		Time time = new Time();
+		time.start();
+		//*************************//
+
 	}
 
 }

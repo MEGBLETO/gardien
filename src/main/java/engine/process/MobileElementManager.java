@@ -8,7 +8,7 @@ import engine.map.Block;
 import engine.map.Map;
 import engine.mobile.Guardian;
 import engine.mobile.Player;
-import gui.GameDisplay;
+
 import javax.swing.JOptionPane;
 import java.util.Random;
 
@@ -156,7 +156,34 @@ public class MobileElementManager {
 			player.setPosition(newPosition);
 		}
 	}
-	
+
+	//****Test****//
+	public Block moveLeftPlayer2(){
+		Block position = player.getPosition();
+		Block newPosition = map.getBlock(position.getLine(), position.getColumn() - 1);
+		player.setPosition(newPosition);
+		return player.getPosition();
+	}
+	public Block moveRightPlayer2(){
+		Block position = player.getPosition();
+		Block newPosition = map.getBlock(position.getLine(), position.getColumn() + 1);
+		player.setPosition(newPosition);
+		return player.getPosition();
+	}
+	public Block moveDownPlayer2(){
+		Block position = player.getPosition();
+		Block newPosition = map.getBlock(position.getLine() + 1, position.getColumn());
+		player.setPosition(newPosition);
+		return player.getPosition();
+	}
+	public Block moveUpPlayer2(){
+		Block position = player.getPosition();
+		Block newPosition = map.getBlock(position.getLine()-1, position.getColumn());
+		player.setPosition(newPosition);
+		return player.getPosition();
+	}
+	//************//
+
 	public void nxtLevel() {
 		Block position = player.getPosition();
 		
@@ -165,13 +192,14 @@ public class MobileElementManager {
 		}
 	}
 
-	public void impact() {
+	public String impact() {//ajout return "you loose"
 		Block position=player.getPosition();
 		for (Guardian guardian : guardians) {
 			if (guardian.getPosition() == position) {
 				Gameover();
 			}
 		}
+		return "You loose";
 	}
 
 	public void Gameover() {
@@ -239,7 +267,6 @@ public class MobileElementManager {
 		        	}
 		        }
 	        }
-
 		}
 	}
 
