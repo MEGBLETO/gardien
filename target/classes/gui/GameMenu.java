@@ -33,8 +33,8 @@ public class GameMenu extends JFrame implements ActionListener {
 
 
 
-        java.net.URL imageURL = GameMenu.class.getResource("bg.jpg");
-        menuIcon = new ImageIcon(new ImageIcon(imageURL).getImage().getScaledInstance(800,800,Image.SCALE_DEFAULT));
+        //java.net.URL imageURL = GameMenu.class.getResource("bg.jpg");
+        //menuIcon = new ImageIcon(new ImageIcon(imageURL).getImage().getScaledInstance(800,800,Image.SCALE_DEFAULT));
         myLabel=new JLabel("hello");
         myLabel.setIcon(menuIcon);
         myLabel.setSize(800, 800);

@@ -10,6 +10,8 @@ public abstract class MobileElement {
 	}
 
 	public Block getPosition() {
+
+		System.out.println(position);
 		return position;
 	}
 

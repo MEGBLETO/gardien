@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import config.GameConfiguration;
+import engine.Time;
 import engine.map.Block;
 import engine.map.Map;
 import engine.process.GameBuilder;
@@ -27,35 +28,17 @@ public class MainGUI extends JFrame implements Runnable {
 	
 	private GameDisplay dashboard;
 
-	public Boolean cont;
-
-	public MainGUI(String title, String controls) {
+	public MainGUI(String title) {
 		super(title);
-		init(controls);
-
-		if (controls == "direction"){
-			cont = true;
-		}
-		else if(controls == "alpha"){
-			cont = false;
-		}
-
-		else{
-			cont = true;
-		}
-
+		init();
 	}
 
-
-
-	private void init(String controls) {
+	private void init() {
 
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
 		KeyControls keyControls = new KeyControls();
-		controls(controls);
-
 		JTextField textField = new JTextField();
 		textField.addKeyListener(keyControls);
 		contentPane.add(textField, BorderLayout.SOUTH);
@@ -73,11 +56,6 @@ public class MainGUI extends JFrame implements Runnable {
 		setPreferredSize(preferredSize);
 		setResizable(false);
 		setLocationRelativeTo(null);
-
-	}
-
-	public String controls(String controls) {
-		return controls;
 	}
 
 	@Override
@@ -88,90 +66,40 @@ public class MainGUI extends JFrame implements Runnable {
 			} catch (InterruptedException e) {
 				System.out.println(e.getMessage());
 			}
-
+			
+			
+			
 			manager.nextRound();
 			dashboard.repaint();
 		}
 	}
 
-	private class KeyControls implements KeyListener  {
-
-
-
-
+	private class KeyControls implements KeyListener {
+		Time time = new Time();
 		@Override
 		public void keyPressed(KeyEvent event) {
-
-
-
-			if(cont == true) {
-				char keyChar = event.getKeyChar();
-
-				switch (keyChar) {
-
-					case 'q':
-						manager.moveLeftPlayer();
-						break;
-					case 'd':
-						manager.moveRightPlayer();
-						break;
-					case 'z':
-						manager.moveUpPlayer();
-						break;
-					case 's':
-						manager.moveDownPlayer();
-						break;
-					default:
-						break;
-				}
+			char keyChar = event.getKeyChar();
+			switch (keyChar) {
+			//Test//
+			case 'q':
+				manager.moveLeftPlayer();
+				time.CountClick();
+				break;
+			case 'd':
+				manager.moveRightPlayer();
+				time.CountClick();
+				break;
+			case 'z':
+				manager.moveUpPlayer();
+				time.CountClick();
+				break;
+			case 's':
+				manager.moveDownPlayer();
+				time.CountClick();
+				break;	
+			default:
+				break;
 			}
-
-
-				else if ( cont == false){
-				int keyCode = event.getKeyCode();
-
-					switch (keyCode) {
-
-						case  37:
-							manager.moveLeftPlayer();
-							break;
-						case 39:
-							manager.moveRightPlayer();
-							break;
-						case 38:
-							manager.moveUpPlayer();
-							break;
-						case 40:
-							manager.moveDownPlayer();
-							break;
-						default:
-							break;
-					}
-
-			}
-
-				else if(cont == null){
-				char keyChar = event.getKeyChar();
-
-				switch (keyChar) {
-
-					case 'q':
-						manager.moveLeftPlayer();
-						break;
-					case 'd':
-						manager.moveRightPlayer();
-						break;
-					case 'z':
-						manager.moveUpPlayer();
-						break;
-					case 's':
-						manager.moveDownPlayer();
-						break;
-					default:
-						break;
-				}
-			}
-
 		}
 
 		@Override
