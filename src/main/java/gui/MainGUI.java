@@ -14,9 +14,13 @@ import engine.map.Block;
 import engine.map.Map;
 import engine.process.GameBuilder;
 import engine.process.MobileElementManager;
+import engine.Time;
 
 public class MainGUI extends JFrame implements Runnable {
-
+	/*TIMER*/
+	private static int minute=0,seconde=0;
+	ActionListener tache_timer;
+	/******/
 	private static final long serialVersionUID = 1L;
 
 	private Map map;
