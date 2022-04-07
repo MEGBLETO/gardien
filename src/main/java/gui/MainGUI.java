@@ -60,6 +60,30 @@ public class MainGUI extends JFrame implements Runnable {
 		textField.addKeyListener(keyControls);
 		contentPane.add(textField, BorderLayout.SOUTH);
 
+		/*Test Timer*/
+		JTextArea Panel1 = new JTextArea();
+		Panel1.setEditable(false);
+		tache_timer= new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e1)
+			{
+				seconde++;
+				if(seconde==60)
+				{
+					seconde=0;
+					minute++;
+				}
+				Panel1.setText("Timer : "+minute+":"+seconde);
+				Font font = new Font("Arial", Font.BOLD, 20);
+				Panel1.setFont(font);
+				Panel1.setForeground(Color.BLACK);
+			}
+		};
+		final Timer timer1= new Timer(1000,tache_timer);
+		timer1.start();
+		contentPane.add(Panel1, BorderLayout.NORTH);
+	//*********************//
+
 		map = GameBuilder.buildMap();
 		manager = GameBuilder.buildInitMobile(map);
 		dashboard = new GameDisplay(map, manager);
