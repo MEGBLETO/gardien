@@ -10,10 +10,13 @@ public class GameSettings extends JFrame  {
 
     JRadioButton b1;
     JRadioButton b2;
+    JPanel panel;
 
 
 
     public GameSettings(){
+
+
 
 
         b1 = new JRadioButton("Directional");
@@ -22,17 +25,15 @@ public class GameSettings extends JFrame  {
 
 
 
-        Box box1 = Box.createHorizontalBox();
-
-        b1.setAlignmentX(CENTER_ALIGNMENT);
-
-        box1.setLocation(300,300);
-        box1.add(b1);
-        box1.add(b2);
+        //Box box1 = Box.createHorizontalBox();
+        panel = new JPanel(new GridLayout(1,2));
+        panel.add(b1);
+        panel.add(b2);
+        panel.setBackground(Color.blue);
 
 
 
-        b1.setAlignmentX(CENTER_ALIGNMENT);
+        b1.setHorizontalAlignment(SwingConstants.CENTER);
 
 
         setTitle("Gardien");
@@ -40,7 +41,7 @@ public class GameSettings extends JFrame  {
         setSize(800, 800);
         setLocationRelativeTo(null);
         setResizable(false);
-        add(box1);
+        add(panel);
         setVisible(true);
 
         b1.addActionListener(new ActionListener() {
