@@ -186,10 +186,18 @@ public class MobileElementManager {
 
 	public void nxtLevel() {
 		Block position = player.getPosition();
-		
-		if(position.getColumn() == GameConfiguration.COLUMN_COUNT - 1 && position.getLine() == GameConfiguration.LINE_COUNT-2) {
-			level++;
+
+		if((position.getColumn() == GameConfiguration.COLUMN_COUNT - 1 && position.getLine() == GameConfiguration.LINE_COUNT-2) && (level==2)) {
+			JOptionPane.showMessageDialog(null, "You win");
+			System.exit(0);
 		}
+		if((position.getColumn() == GameConfiguration.COLUMN_COUNT - 1 && position.getLine() == GameConfiguration.LINE_COUNT-2) && (level==1)) {
+			level++;
+			Block newPosition = map.getBlock(1,0);
+			player.setPosition(newPosition);
+		}
+
+
 	}
 
 	public String impact() {//ajout return "you loose"

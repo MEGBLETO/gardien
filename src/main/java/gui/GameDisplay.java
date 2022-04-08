@@ -30,12 +30,7 @@ public class GameDisplay extends JPanel {
 		super.paintComponent(g);
 		
 		int level  = manager.getLevel();
-		if(level ==2) {
-			Player plyer = manager.getPlayer();
-			Block position = plyer.getPosition();
-			Block newPosition = map.getBlock(1,0);
-			plyer.setPosition(newPosition);
-		}
+
 		paintStrategy.paint(map, g, level);
 
 		Player player = manager.getPlayer();
